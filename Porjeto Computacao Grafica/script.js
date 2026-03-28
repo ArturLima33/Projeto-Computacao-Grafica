@@ -30,19 +30,48 @@ function draw() {
 
 // ROBÔ (TEMPORÁRIO)
 function drawRobot() {
-    // corpo
+    drawBody()
+    drawHead()
+    drawArm(-45)   // braço esquerdo
+    drawArm(45)    // braço direito
+    drawLeg(-15)   // perna esquerda
+    drawLeg(15)    // perna direita
+}
+
+function drawBody() {
     ctx.fillStyle = "gray"
     ctx.fillRect(-25, -50, 50, 100)
-
-    // cabeça
-    ctx.fillStyle = "white"
-    ctx.fillRect(-20, -90, 40, 40)
-
-    // braço esquerdo
-    ctx.fillRect(-50, -40, 20, 60)
-
-    // braço direito
-    ctx.fillRect(30, -40, 20, 60)
 }
+
+function drawHead() {
+    ctx.fillStyle = "white"
+    ctx.fillRect(-20, -100, 40, 40)
+
+    // olhos
+    ctx.fillStyle = "black"
+    ctx.beginPath()
+    ctx.arc(-8, -80, 4, 0, Math.PI * 2)
+    ctx.arc(8, -80, 4, 0, Math.PI * 2)
+    ctx.fill()
+}
+
+function drawArm(x) {
+    ctx.fillStyle = "silver"
+    ctx.fillRect(x, -40, 20, 60)
+
+    drawForearm(x)
+}
+
+function drawForearm(x) {
+    ctx.fillStyle = "darkgray"
+    ctx.fillRect(x, 20, 20, 40)
+}
+
+function drawLeg(x) {
+    ctx.fillStyle = "silver"
+    ctx.fillRect(x, 50, 15, 50)
+}
+
+
 // INICIAR
 draw()
