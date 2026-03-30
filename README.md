@@ -1,11 +1,11 @@
-# 🤖 Robô Interativo e Ímã Autônomo
-# 📝 Sobre o Projeto
+🤖 Robô Interativo e Ímã Autônomo
+📝 Sobre o Projeto
 Este projeto é uma cena 2D interativa criada com HTML5 Canvas e JavaScript. Ele apresenta um robô que pode ser controlado pelo usuário e um ímã que reage à presença do robô, alternando entre perseguição e fuga.
 
-# 🛠️ Transformações Geométricas Utilizadas
+🛠️ Transformações Geométricas Utilizadas
 O projeto aplica os três conceitos principais de transformações aprendidos em aula:
 
-# Translação (translate):
+Translação (translate):
 
 Usada para mover o robô pelo cenário com as teclas WASD.
 
@@ -13,9 +13,9 @@ Usada para montar o corpo do robô, posicionando braços, pernas e cabeça em se
 
 Cria o efeito de "câmera", movendo o fundo para que o robô fique no centro.
 
-# Rotação (rotate):
+Rotação (rotate):
 
-## Braços e Cabeça: Seguem o movimento do mouse em tempo real.
+Braços e Cabeça: Seguem o movimento do mouse em tempo real.
 
 Caminhada: As pernas giram para frente e para trás conforme o robô se move.
 
@@ -47,8 +47,6 @@ Cenário: Prédios com luzes que piscam e chaminés que soltam fumaça.
 Física: O pulo tem gravidade, fazendo o robô cair de volta ao chão naturalmente.
 
 👥 Integrantes
-[Seu Nome]
-
-[Nome do Colega 1]
-
-[Nome do Colega 2]
+Artur Lima Pinto Bacalhau / RA: 00000852137
+Davi Magalhães / RA: 00000852600
+Renato Hideki Nakao Ichigi / RA: 00000858696
