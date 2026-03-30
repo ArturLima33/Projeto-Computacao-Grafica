@@ -12,29 +12,23 @@ const ctx = canvas.getContext("2d")
 const mapWidth = canvas.width
 const mapHeight = canvas.height
 
-// TAMANHO ROBÔ
 const ROBOT_WIDTH = 60
 const ROBOT_HEIGHT = 150
 
-// ROBÔ
 let robotX = 400
 let robotY = 300
 
-// GRAVIDADE
 let velocityY = 0
 const gravity = 0.35
 const jumpForce = -8
 let onGround = false
 
-// CONTROLES
 let keys = {}
 
-// ÍMÃ
 let magnetX = 200
 let magnetY = 420
 let magnetAngle = 0
 
-// ANIMAÇÃO
 let walkTime = 0
 let smokeOffset = 0
 
