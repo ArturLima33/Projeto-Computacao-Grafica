@@ -47,7 +47,7 @@ O ímã possui um comportamento automático baseado na distância do robô:
 
 - Física: O pulo tem gravidade, fazendo o robô cair de volta ao chão naturalmente.
 
-#👥 Integrantes
+# 👥 Integrantes
 - Artur Lima Pinto Bacalhau / RA: 00000852137
 - Davi Magalhães / RA: 00000852600
 - Renato Hideki Nakao Ichigi / RA: 00000858696
