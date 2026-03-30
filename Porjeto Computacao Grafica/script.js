@@ -1,3 +1,11 @@
+let mouseX = 0
+let mouseY = 0
+
+canvas.addEventListener("mousemove", (e)=>{
+    mouseX = e.offsetX
+    mouseY = e.offsetY
+})
+
 const canvas = document.getElementById("canvas")
 const ctx = canvas.getContext("2d")
 
@@ -325,22 +333,33 @@ drawLeg(5,"right")
 
 function drawHead(){
 
-ctx.fillStyle="#bdc3c7"
-ctx.fillRect(-24,-100,48,40)
+    let dx = mouseX - robotX
+    let dy = mouseY - robotY
+    let ang = Math.atan2(dy, dx) * 0.3
 
-ctx.fillStyle="#00e5ff"
-ctx.fillRect(-16,-88,32,14)
+    ctx.save()
 
-ctx.strokeStyle="black"
-ctx.beginPath()
-ctx.moveTo(0,-100)
-ctx.lineTo(0,-120)
-ctx.stroke()
+    ctx.translate(0, -80)
+    ctx.rotate(ang)
+    ctx.translate(0, 80)
 
-ctx.beginPath()
-ctx.arc(0,-122,4,0,Math.PI*2)
-ctx.fill()
+    ctx.fillStyle="#bdc3c7"
+    ctx.fillRect(-24,-100,48,40)
 
+    ctx.fillStyle="#00e5ff"
+    ctx.fillRect(-16,-88,32,14)
+
+    ctx.strokeStyle="black"
+    ctx.beginPath()
+    ctx.moveTo(0,-100)
+    ctx.lineTo(0,-120)
+    ctx.stroke()
+
+    ctx.beginPath()
+    ctx.arc(0,-122,4,0,Math.PI*2)
+    ctx.fill()
+
+    ctx.restore()
 }
 
 function drawBody(){
@@ -366,26 +385,28 @@ drawBolt(22,45)
 
 function drawArm(x){
 
-ctx.fillStyle="#2c3e50"
-ctx.beginPath()
-ctx.arc(x+10,-40,8,0,Math.PI*2)
-ctx.fill()
+    let dx = mouseX - robotX
+    let dy = mouseY - robotY
+    let ang = Math.atan2(dy, dx)
 
-ctx.fillStyle="#95a5a6"
-ctx.fillRect(x,-35,20,45)
+    ctx.save()
+    ctx.translate(x+10,-40)
+    ctx.rotate(ang)
 
-drawForearm(x)
+    ctx.fillStyle="#95a5a6"
+    ctx.fillRect(0,0,20,40)
 
-}
+    ctx.translate(20,40)
 
-function drawForearm(x){
+    ctx.rotate(Math.sin(walkTime)*0.5)
 
-ctx.fillStyle="#7f8c8d"
-ctx.fillRect(x,10,20,30)
+    ctx.fillStyle="#7f8c8d"
+    ctx.fillRect(0,0,18,30)
 
-ctx.fillStyle="#2c3e50"
-ctx.fillRect(x-2,40,24,8)
+    ctx.fillStyle="#2c3e50"
+    ctx.fillRect(-2,30,22,8)
 
+    ctx.restore()
 }
 
 function drawLeg(x,side){
@@ -423,10 +444,31 @@ function draw(){
 ctx.setTransform(1,0,0,1,0,0)
 ctx.clearRect(0,0,mapWidth,mapHeight)
 
+let zoom = 1.1
+
+ctx.setTransform(
+    zoom, 0,
+    0, zoom,
+    mapWidth/2 - robotX*zoom,
+    mapHeight/2 - robotY*zoom
+)
+
 smokeOffset += 0.4
 if(smokeOffset > 80) smokeOffset = 0
 
 drawBackground()
+
+ctx.save()
+
+ctx.translate(robotX, 480)
+ctx.scale(1.2, 0.3)
+
+ctx.fillStyle="rgba(0,0,0,0.3)"
+ctx.beginPath()
+ctx.arc(0,0,40,0,Math.PI*2)
+ctx.fill()
+
+ctx.restore()
 
 updateMovement()
 updateMagnet()
@@ -443,6 +485,47 @@ drawRobot()
 ctx.restore()
 
 drawMagnet()
+
+function drawMagnet(){
+
+    ctx.save()
+
+    ctx.translate(magnetX,magnetY)
+    ctx.rotate(magnetAngle)
+
+    for(let i=0;i<4;i++){
+        ctx.beginPath()
+        ctx.arc(0,0,45 + i*12 + Math.sin(walkTime+i)*5,0,Math.PI*2)
+        ctx.strokeStyle="rgba(0,200,255,0.2)"
+        ctx.lineWidth = 2
+        ctx.stroke()
+    }
+
+    ctx.lineWidth=16
+    ctx.strokeStyle="#c0392b"
+
+    ctx.beginPath()
+    ctx.arc(0,0,35,Math.PI,0)
+    ctx.stroke()
+
+    ctx.lineWidth=10
+    ctx.strokeStyle="#ecf0f1"
+
+    ctx.beginPath()
+    ctx.moveTo(-35,0)
+    ctx.lineTo(-35,18)
+
+    ctx.moveTo(35,0)
+    ctx.lineTo(35,18)
+    ctx.stroke()
+
+    ctx.fillStyle="white"
+    ctx.font="14px Arial"
+    ctx.fillText("N",-42,-5)
+    ctx.fillText("S",32,-5)
+
+    ctx.restore()
+}
 
 magnetAngle += 0.03
 
