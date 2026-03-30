@@ -1,4 +1,4 @@
-# 🤖 Robô Interativo e Ímã Autônomo
+# 🤖 Robô Interativo 2D
 
 # 📝 Sobre o Projeto
 Este projeto é uma cena 2D interativa criada com HTML5 Canvas e JavaScript. Ele apresenta um robô que pode ser controlado pelo usuário e um ímã que reage à presença do robô, alternando entre perseguição e fuga.
